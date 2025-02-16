@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creativa | Our Projects</title>
+    <link rel="icon" href="images/logo/fav_icon.png">
+    <link href="styl.css" rel="stylesheet">
+</head>
+
+<body x-data="{ page: '404', 'loaded': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }">
+    <!-- ===== Header Start ===== -->
+    <header class="fixed left-0 top-0 w-full z-9999 py-7 lg:py-0"
+        :class="{ 'bg-dark/70 backdrop-blur-lg shadow !py-4 lg:!py-0 transition duration-100 before:absolute before:w-full before:h-[1px] before:bottom-0 before:left-0 before:features-row-border' : stickyMenu }"
+        @scroll.window="stickyMenu = (window.scrollY > 0) ? true : false">
+        <div class="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 lg:flex items-center justify-between relative">
+            <div class="w-full lg:w-1/4 flex items-center justify-between">
+                <a href="index.html">
+                    <img src="images/logo/logo.png" alt="Logo" />
+                </a>
+
+                <!-- Hamburger Toggle BTN -->
+                <button class="lg:hidden block" @click="navigationOpen = !navigationOpen">
+                    <span class="block relative cursor-pointer w-5.5 h-5.5">
+                        <span class="du-block absolute right-0 w-full h-full">
+                            <span
+                                class="block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-[0]"
+                                :class="{ '!w-full delay-300': !navigationOpen }"></span>
+                            <span
+                                class="block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-150"
+                                :class="{ '!w-full delay-400': !navigationOpen }"></span>
+                            <span
+                                class="block relative top-0 left-0 bg-white rounded-sm w-0 h-0.5 my-1 ease-in-out duration-200 delay-200"
+                                :class="{ '!w-full delay-500': !navigationOpen }"></span>
+                        </span>
+                        <span class="du-block absolute right-0 w-full h-full rotate-45">
+                            <span
+                                class="block bg-white rounded-sm ease-in-out duration-200 delay-300 absolute left-2.5 top-0 w-0.5 h-full"
+                                :class="{ '!h-0 delay-[0]': !navigationOpen }"></span>
+                            <span
+                                class="block bg-white rounded-sm ease-in-out duration-200 delay-400 absolute left-0 top-2.5 w-full h-0.5"
+                                :class="{ '!h-0 dealy-200': !navigationOpen }"></span>
+                        </span>
+                    </span>
+                </button>
+                <!-- Hamburger Toggle BTN -->
+            </div>
+
+            <div class="w-full lg:w-3/4 h-0 lg:h-auto invisible lg:visible lg:flex items-center justify-between"
+                :class="{ '!visible bg-dark shadow-lgrelative !h-auto max-h-[400px] overflow-y-scroll rounded-md mt-4 p-7.5': navigationOpen }">
+                <nav>
+                    <ul class="flex lg:items-center flex-col lg:flex-row gap-5 lg:gap-2">
+                        <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
+                            <a href="index.html"
+                                class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient"
+                                :class="{'!text-white nav-gradient' :page === 'home'}">Home</a>
+                        </li>
+                        <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
+                            <a href="index.html#features"
+                                class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">Features</a>
+                        </li>
+                        <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
+                            <a href="index.html#pricing"
+                                class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">Pricing</a>
+                        </li>
+                        <li class="group relative lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }"
+                            x-data="{ dropdown: false }">
+                            <a href="#"
+                                class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient flex items-center justify-between gap-3"
+                                @click.prevent="dropdown = !dropdown"
+                                :class="{ '!text-white nav-gradient': page === 'about' || page === 'pricing' || page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
+                                Pages
+
+                                <svg class="fill-current w-3 h-3 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512">
+                                    <path
+                                        d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                                </svg>
+                            </a>
+
+                            <!-- Dropdown Start -->
+                            <ul class="dropdown" :class="{ 'flex': dropdown }">
+                                <li>
+                                    <a href="about.html"
+                                        class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
+                                        :class="{ '!text-white bg-white/5': page === 'about' }">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="OurServices.html"
+                                        class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
+                                        :class="{ '!text-white bg-white/5': page === 'blog-grid' }">Our Services</a>
+                                </li>
+                                <li>
+                                    <a href="OurProjects.html"
+                                        class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
+                                        :class="{ '!text-white bg-white/5': page === 'blog-single' }">Our Projects</a>
+                                </li>
+                                <li>
+                                    <a href="pricing.html"
+                                        class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
+                                        :class="{ '!text-white bg-white/5': page === 'pricing' }">Pricing Table</a>
+                                </li>
+                            </ul>
+                            <!-- Dropdown End -->
+                        </li>
+                        <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
+                            <a href="index.html#support"
+                                class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="flex items-center gap-6 mt-7 lg:mt-0">
+                    <a href="loginpages/Signin.html" class="text-white text-sm hover:text-opacity-75">Sign in</a>
+
+                    <a href="loginpages/signup.html"
+                        class="button-border-gradient relative rounded-lg text-white text-sm flex items-center gap-1.5 py-2 px-4.5 shadow-button hover:button-gradient-hover hover:shadow-none">
+                        Sign up
+
+                        <svg class="mt-0.5" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.4002 7.60002L9.2252 2.35002C9.0002 2.12502 8.6502 2.12502 8.4252 2.35002C8.2002 2.57502 8.2002 2.92502 8.4252 3.15002L12.6252 7.42502H2.0002C1.7002 7.42502 1.4502 7.67502 1.4502 7.97502C1.4502 8.27502 1.7002 8.55003 2.0002 8.55003H12.6752L8.4252 12.875C8.2002 13.1 8.2002 13.45 8.4252 13.675C8.5252 13.775 8.6752 13.825 8.8252 13.825C8.9752 13.825 9.1252 13.775 9.2252 13.65L14.4002 8.40002C14.6252 8.17502 14.6252 7.82503 14.4002 7.60002Z"
+                                fill="white" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ===== Header End ===== -->
+
+    <main>
+        <!-- ===== Breadcrumb Section Start ===== -->
+        <section class="relative z-10 pt-30 lg:pt-35 xl:pt-40 pb-18">
+            <!-- bg shapes -->
+            <div class="absolute top-25 left-0 w-full flex flex-col gap-3 -z-1 opacity-50">
+                <div class="w-full h-[1.24px] footer-bg-gradient"></div>
+                <div class="w-full h-[2.47px] footer-bg-gradient"></div>
+                <div class="w-full h-[3.71px] footer-bg-gradient"></div>
+                <div class="w-full h-[4.99px] footer-bg-gradient"></div>
+                <div class="w-full h-[6.19px] footer-bg-gradient"></div>
+                <div class="w-full h-[7.42px] footer-bg-gradient"></div>
+                <div class="w-full h-[8.66px] footer-bg-gradient"></div>
+                <div class="w-full h-[9.90px] footer-bg-gradient"></div>
+                <div class="w-full h-[13px] footer-bg-gradient"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-dark/0 to-dark -z-1">
+            </div>
+
+            <div class="text-center px-4">
+                <h1 class="font-extrabold text-heading-2 text-white mb-5.5">
+                    Our Projects
+                </h1>
+                <ul class="flex items-center justify-center gap-2">
+                    <li class="font-medium"><a href="index.html">Home</a></li>
+                    <li class="font-medium">/ Our Projects</li>
+                </ul>
+            </div>
+        </section>
+        <!-- ===== Breadcrumb Section End ===== -->
+
+
+
+        <section class="author-archive">
+            <div class="container1">
+                <input type="radio" id="All" name="categories" value="All" checked>
+                <input type="radio" id="CSS" name="categories" value="CSS">
+                <input type="radio" id="JavaScript" name="categories" value="JavaScript">
+                <input type="radio" id="jQuery" name="categories" value="jQuery">
+                <input type="radio" id="WordPress" name="categories" value="WordPress">
+                <input type="radio" id="Slider" name="categories" value="Slider">
+                <input type="radio" id="fullPage.js" name="categories" value="fullPage.js">
+
+                <ol class="filters">
+                    <li>
+                        <label for="All">All</label>
+                    </li>
+                    <li>
+                        <label for="CSS">CSS</label>
+                    </li>
+                    <li>
+                        <label for="JavaScript">JavaScript</label>
+                    </li>
+                    <li>
+                        <label for="jQuery">jQuery</label>
+                    </li>
+                    <li>
+                        <label for="WordPress">WordPress</label>
+                    </li>
+                    <li>
+                        <label for="Slider">Slider</label>
+                    </li>
+                    <li>
+                        <label for="fullPage.js">fullPage.js</label>
+                    </li>
+                </ol>
+
+                <ol class="posts">
+                    <li class="post" data-category="CSS JavaScript">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-build-a-dead-simple-parallax-effect-with-css-javascript--cms-33061?_ga=2.146015156.1249101154.1555312171-2126893531.1553152868"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/parallax-pre.jpg"
+                                        alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">JavaScript</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-build-a-dead-simple-parallax-effect-with-css-javascript--cms-33061?_ga=2.146015156.1249101154.1555312171-2126893531.1553152868"
+                                            target="_blank">Quick Tip: Create a Very Simple Parallax Effect With CSS &
+                                            JavaScript
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="CSS JavaScript">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-a-portfolio-page-with-css-javascript--cms-32933?_ga=2.268974834.267848227.1555345574-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/chart-pre.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">JavaScript</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-a-portfolio-page-with-css-javascript--cms-32933?_ga=2.268974834.267848227.1555345574-242901505.1471790948"
+                                            target="_blank">How to Build a Static Portfolio Page With CSS & JavaScript
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="JavaScript WordPress">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/dropdown-navigation-how-to-maintain-the-selected-option-on-page-load-on-a-wordpress-site--cms-32211?_ga=2.3551667.267848227.1555345574-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/pre-wp.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">JavaScript</a>
+                                        </li>
+                                        <li>
+                                            <a href="">WordPress</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/dropdown-navigation-how-to-maintain-the-selected-option-on-page-load-on-a-wordpress-site--cms-32211?_ga=2.3551667.267848227.1555345574-242901505.1471790948"
+                                            target="_blank">Dropdown Navigation: How to Maintain the Selected Option On
+                                            WordPress
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="CSS JavaScript">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/dropdown-navigation-how-to-maintain-the-selected-option-on-page-load--cms-32210?_ga=2.192885033.267848227.1555345574-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/load-pre.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">JavaScript</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/dropdown-navigation-how-to-maintain-the-selected-option-on-page-load--cms-32210?_ga=2.192885033.267848227.1555345574-242901505.1471790948"
+                                            target="_blank">Dropdown Navigation: How to Maintain the Selected Option on
+                                            Page
+                                            Load
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="CSS">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-enhance-a-page-with-css-animations--cms-32100?_ga=2.3551667.267848227.1555345574-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/animations-pre.png"
+                                        alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-enhance-a-page-with-css-animations--cms-32100?_ga=2.3551667.267848227.1555345574-242901505.1471790948"
+                                            target="_blank">Enhance the Way a Web Page Loads With CSS Animations
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="CSS">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086?_ga=2.225771033.267848227.1555345574-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/flex-pre.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-page-with-flexbox--cms-32086?_ga=2.225771033.267848227.1555345574-242901505.1471790948"
+                                            target="_blank">How to Build a Full-Screen Responsive Page With Flexbox</a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="fullPage.js">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/how-to-create-an-animated-spirit-day-presentation-with-fullpagejs--cms-32005?_ga=2.171060384.1249101154.1555312171-2126893531.1553152868"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/spirit-pre.jpg"
+                                        alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">fullPage.js</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/how-to-create-an-animated-spirit-day-presentation-with-fullpagejs--cms-32005?_ga=2.171060384.1249101154.1555312171-2126893531.1553152868"
+                                            target="_blank">How to Create an Animated Spirit Day Presentation With
+                                            fullPage.js
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="CSS JavaScript">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-manipulate-cursor-appearance-with-css--cms-31825?_ga=2.149104566.1249101154.1555312171-2126893531.1553152868"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/cursor-pre.jpg"
+                                        alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">JavaScript</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-manipulate-cursor-appearance-with-css--cms-31825?_ga=2.149104566.1249101154.1555312171-2126893531.1553152868"
+                                            target="_blank">Quick Tip: How to Manipulate the Cursor Appearance With CSS
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="jQuery CSS Slider">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-carousel-slider-with-owljs--cms-31771?_ga=2.214527703.1129106392.1555690352-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/pre-oo.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">jQuery</a>
+                                        </li>
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Slider</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-a-full-screen-responsive-carousel-slider-with-owljs--cms-31771?_ga=2.214527703.1129106392.1555690352-242901505.1471790948"
+                                            target="_blank">How to Build a Full-Screen Responsive Carousel Slider With
+                                            Owl.js
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="jQuery CSS Slider">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-an-attractive-responsive-image-gallery-with-slickjs--cms-31355?_ga=2.245039813.1129106392.1555690352-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/slick-pre.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">jQuery</a>
+                                        </li>
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Slider</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/how-to-build-an-attractive-responsive-image-gallery-with-slickjs--cms-31355?_ga=2.245039813.1129106392.1555690352-242901505.1471790948"
+                                            target="_blank">How to Build an Attractive Responsive Image Gallery With
+                                            slick.js
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="CSS JavaScript">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/a-simple-javascript-technique-for-filling-star-ratings--cms-29450?_ga=2.239800003.1129106392.1555690352-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/stars-pre.png" alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">CSS</a>
+                                        </li>
+                                        <li>
+                                            <a href="">JavaScript</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/a-simple-javascript-technique-for-filling-star-ratings--cms-29450?_ga=2.239800003.1129106392.1555690352-242901505.1471790948"
+                                            target="_blank">A Simple JavaScript Technique for Filling Star Ratings
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li class="post" data-category="jQuery fullPage.js">
+                        <article>
+                            <figure>
+                                <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-scroll-animations-with-fullpagejs-and-animatecss--cms-25235?_ga=2.245041733.1129106392.1555690352-242901505.1471790948"
+                                    target="_blank">
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/scroll-preview.jpg"
+                                        alt="">
+                                </a>
+                                <figcaption>
+                                    <ol class="post-categories">
+                                        <li>
+                                            <a href="">jQuery</a>
+                                        </li>
+                                        <li>
+                                            <a href="">fullPage.js</a>
+                                        </li>
+                                    </ol>
+                                    <h2 class="post-title">
+                                        <a href="https://webdesign.tutsplus.com/tutorials/quick-tip-scroll-animations-with-fullpagejs-and-animatecss--cms-25235?_ga=2.245041733.1129106392.1555690352-242901505.1471790948"
+                                            target="_blank">Quick Tip: Scroll Animations With fullPage.js and
+                                            Animate.css
+                                        </a>
+                                    </h2>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+
+        <style>
+          
+
+            /* ===== 02. Global Style ===== */
+
+
+            .container1 {
+                max-width: 1320px;
+                width: 100%;
+                margin: 0 auto;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+
+            /* RESET RULES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+            :root {
+                --black: #3a3a3a;
+                --white: #fff;
+                --green: #7c31fb;
+            }
+
+            img {
+                display: block;
+                max-width: 101%;
+                height: auto;
+            }
+
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+
+
+            .author-archive {
+                padding: 1.5rem;
+            }
+
+            .author-archive h1 {
+                color: #fff;
+            }
+
+            .container1 {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            h1 a {
+                transition: all 0.1s;
+            }
+
+            h1 a:hover {
+                background: var(--green);
+                color: var(--white);
+            }
+
+            input[type="radio"] {
+                position: absolute;
+                left: -9999px;
+            }
+
+
+            /* FILTERS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+            .filters {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .filters * {
+                display: inline-block;
+            }
+
+            .filters label {
+                padding: 0.5rem 1rem;
+                margin-bottom: 0.25rem;
+                border-radius: 2rem;
+                min-width: 50px;
+                line-height: normal;
+                cursor: pointer;
+                transition: all 0.1s;
+                color: #fff;
+            }
+
+            .filters label:hover {
+                background: var(--green);
+                color: var(--white);
+            }
+
+            /* FILTERED ELEMENTS (POSTS)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+            .posts {
+                display: grid;
+                grid-gap: 2rem;
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .post img {
+                border-radius: 10%;
+            }
+
+            .posts .post {
+                background: #1e1b2b;
+                border: 0px solid rgba(0, 0, 0, 0.1);
+                border-radius: 10%;
+            }
+
+            .posts .post-title {
+                font-size: 1.3rem;
+                gap: 1;
+            }
+
+            .post-title a {
+                color: #fff;
+            }
+
+            .posts .post-title:hover {
+                text-decoration: underline;
+            }
+
+            .posts figcaption {
+                padding: 0.5rem;
+            }
+
+            .posts .post-categories {
+                margin-bottom: 0.75rem;
+                font-size: 0.75rem;
+            }
+
+            .posts .post-categories * {
+                display: inline-block;
+            }
+
+            .posts .post-categories li {
+                margin-bottom: 0.2rem;
+            }
+
+            .posts .post-categories a {
+                padding: 0.2rem 0.5rem;
+                border-radius: 1rem;
+                border: 1px solid;
+                line-height: normal;
+                transition: all 0.1s;
+            }
+
+            .posts .post-categories a:hover {
+                background: var(--green);
+                color: var(--white);
+            }
+
+            /* FILTERING RULES
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+            [value="All"]:checked~.filters [for="All"],
+            [value="CSS"]:checked~.filters [for="CSS"],
+            [value="JavaScript"]:checked~.filters [for="JavaScript"],
+            [value="jQuery"]:checked~.filters [for="jQuery"],
+            [value="WordPress"]:checked~.filters [for="WordPress"],
+            [value="Slider"]:checked~.filters [for="Slider"],
+            [value="fullPage.js"]:checked~.filters [for="fullPage.js"] {
+                background: var(--green);
+                color: var(--white);
+            }
+
+            [value="All"]:checked~.posts [data-category] {
+                display: block;
+            }
+
+            [value="CSS"]:checked~.posts .post:not([data-category~="CSS"]),
+            [value="JavaScript"]:checked~.posts .post:not([data-category~="JavaScript"]),
+            [value="jQuery"]:checked~.posts .post:not([data-category~="jQuery"]),
+            [value="WordPress"]:checked~.posts .post:not([data-category~="WordPress"]),
+            [value="Slider"]:checked~.posts .post:not([data-category~="Slider"]),
+            [value="fullPage.js"]:checked~.posts .post:not([data-category~="fullPage.js"]) {
+                display: none;
+            }
+
+
+            /* MQ
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+            @media screen and (max-width: 900px) {
+                .posts {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+
+            @media screen and (max-width: 650px) {
+                html {
+                    font-size: 14px;
+                }
+
+                .posts {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        </style>
+
+
+
+
+
+
+
+
+
+    </main>
+    <!-- ===== Footer Start ===== -->
+    <!-- ====== Footer Section Start -->
+    <footer class="relative z-10 pb-17.5 lg:pb-22.5 xl:pb-27.5">
+        <!-- bg shapes -->
+        <div class="absolute bottom-0 left-0 w-full flex flex-col gap-3 -z-1 opacity-50">
+            <div class="w-full h-[1.24px] footer-bg-gradient"></div>
+            <div class="w-full h-[2.47px] footer-bg-gradient"></div>
+            <div class="w-full h-[3.71px] footer-bg-gradient"></div>
+            <div class="w-full h-[4.99px] footer-bg-gradient"></div>
+            <div class="w-full h-[6.19px] footer-bg-gradient"></div>
+            <div class="w-full h-[7.42px] footer-bg-gradient"></div>
+            <div class="w-full h-[8.66px] footer-bg-gradient"></div>
+            <div class="w-full h-[9.90px] footer-bg-gradient"></div>
+            <div class="w-full h-[13px] footer-bg-gradient"></div>
+        </div>
+
+        <div class="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0 relative pt-17.5">
+            <div class="w-full h-[1px] footer-divider-gradient absolute top-0 left-0"></div>
+
+            <div class="flex flex-wrap justify-between">
+                <div class="mb-10 max-w-[571px] w-full">
+                    <a class="mb-8.5 inline-block" href="index.html">
+                        <img src="images/logo/logo.png" width="300px" alt="Logo" />
+                    </a>
+
+                    <p class="mb-12 xl:w-4/5">
+                        AI writing tool is designed to empower you with exceptional writing
+                        capabilities.
+                    </p>
+
+                    <div class="flex items-center gap-5">
+                        <a href="#" class="hover:text-white ease-in duration-300">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13 21.9506C18.0533 21.4489 22 17.1853 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 16.8379 5.43552 20.8734 10 21.8V16H7V13H10V9.79586C10 7.47449 11.9695 5.64064 14.285 5.80603L17 5.99996V8.99996H15C13.8954 8.99996 13 9.89539 13 11V13H17L16 16H13V21.9506Z"
+                                    fill="" />
+                            </svg>
+                        </a>
+
+                        <a href="#" class="hover:text-white ease-in duration-300">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M7.6125 21.5251C16.4625 21.5251 21.2625 14.2126 21.2625 7.87509C21.2625 7.72509 21.2625 7.46259 21.225 7.23759C22.1625 6.56259 22.9875 5.70009 23.625 4.76259C22.725 5.17509 21.825 5.40009 20.8875 5.51259C21.9 4.91259 22.65 3.97509 22.9875 2.8501C22.05 3.3751 21.075 3.78759 19.9125 4.01259C19.0125 3.0751 17.8125 2.4751 16.425 2.4751C13.7625 2.4751 11.5875 4.65009 11.5875 7.31259C11.5875 7.68759 11.625 8.06259 11.7 8.43759C7.8375 8.17509 4.3125 6.26259 1.9125 3.3751C1.5 4.12509 1.275 4.91259 1.275 5.77509C1.275 7.46259 2.1375 8.88759 3.45 9.75009C2.6625 9.71259 1.9125 9.48759 1.275 9.15009C1.275 9.18759 1.275 9.18759 1.275 9.18759C1.275 11.4751 2.925 13.4626 5.1 13.9126C4.6875 14.0251 4.2375 14.0626 3.9 14.0626C3.6 14.0626 3.2625 14.0251 3 13.9501C3.6375 15.8626 5.4 17.2501 7.5 17.2876C5.85 18.5626 3.7875 19.3501 1.575 19.3501C1.125 19.4251 0.75 19.3501 0.375 19.3126C2.4 20.7376 4.9125 21.5251 7.6125 21.5251Z"
+                                    fill="" />
+                            </svg>
+                        </a>
+
+                        <a href="#" class="hover:text-white ease-in duration-300">
+                            <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_368_11839)">
+                                    <path
+                                        d="M12 0.674805C5.625 0.674805 0.375 5.8498 0.375 12.2998C0.375 17.3998 3.7125 21.7498 8.3625 23.3248C8.9625 23.4373 9.15 23.0623 9.15 22.7998C9.15 22.5373 9.15 21.7873 9.1125 20.7748C5.8875 21.5248 5.2125 19.1998 5.2125 19.1998C4.6875 17.8873 3.9 17.5123 3.9 17.5123C2.85 16.7623 3.9375 16.7623 3.9375 16.7623C5.1 16.7998 5.7375 17.9623 5.7375 17.9623C6.75 19.7623 8.475 19.2373 9.1125 18.8998C9.225 18.1498 9.525 17.6248 9.8625 17.3248C7.3125 17.0623 4.575 16.0498 4.575 11.6248C4.575 10.3498 5.0625 9.3373 5.775 8.5498C5.6625 8.2873 5.25 7.0873 5.8875 5.4748C5.8875 5.4748 6.9 5.1748 9.1125 6.6748C10.05 6.4123 11.025 6.2623 12.0375 6.2623C13.05 6.2623 14.0625 6.3748 14.9625 6.6748C17.175 5.2123 18.15 5.4748 18.15 5.4748C18.7875 7.0498 18.4125 8.2873 18.2625 8.5498C19.0125 9.3373 19.4625 10.3873 19.4625 11.6248C19.4625 16.0498 16.725 17.0623 14.175 17.3248C14.5875 17.6998 14.9625 18.4498 14.9625 19.4998C14.9625 21.0748 14.925 22.3123 14.925 22.6873C14.925 22.9873 15.15 23.3248 15.7125 23.2123C20.2875 21.6748 23.625 17.3623 23.625 12.2248C23.5875 5.8498 18.375 0.674805 12 0.674805Z"
+                                        fill="" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_368_11839">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <p class="font-medium mt-5.5">
+                        AI Tool, LLC. All rights reserved.
+                    </p>
+                </div>
+
+                <div class="max-w-[571px] w-full">
+                    <div class="flex flex-col sm:flex-row sm:justify-between gap-10">
+                        <div>
+                            <h5 class="font-semibold text-white mb-5">Products</h5>
+
+                            <ul class="flex flex-col gap-3.5">
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Features</a>
+                                </li>
+                                <li>
+                                    <a href="/#"
+                                        class="font-medium ease-in duration-300 hover:text-white">Integrations</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Pricing</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Changelog</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Roadmap</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="font-semibold text-white mb-5">Company</h5>
+
+                            <ul class="flex flex-col gap-3.5">
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Privacy
+                                        Policy</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Refund
+                                        Policy</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Support</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Community</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h5 class="font-semibold text-white mb-5">Support</h5>
+
+                            <ul class="flex flex-col gap-3.5">
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Features</a>
+                                </li>
+                                <li>
+                                    <a href="/#"
+                                        class="font-medium ease-in duration-300 hover:text-white">Integrations</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Pricing</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Changelog</a>
+                                </li>
+                                <li>
+                                    <a href="/#" class="font-medium ease-in duration-300 hover:text-white">Roadmap</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ====== Footer Section End -->
+    <!-- ===== Footer End ===== -->
+
+    <!-- ====== Back To Top Start ===== -->
+    <button
+        class="hidden items-center justify-center w-10 h-10 rounded-[4px] shadow-solid-5 bg-purple hover:opacity-70 fixed bottom-8 right-8 z-999"
+        @click="window.scrollTo({top: 0, behavior: 'smooth'})"
+        @scroll.window="scrollTop = (window.pageYOffset > 50) ? true : false" :class="{ '!flex' : scrollTop }">
+        <svg class="fill-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+                d="M233.4 105.4c12.5-12.5 32.8-12.5 45.3 0l192 192c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L256 173.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l192-192z" />
+        </svg>
+    </button>
+    <!-- ====== Back To Top End ===== -->
+    <script defer src="bundle.js"></script>
+    <script defer
+        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+        data-cf-beacon='{"rayId":"90f2e3be78d0ce18","version":"2025.1.0","r":1,"token":"9a6015d415bb4773a0bff22543062d3b","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
